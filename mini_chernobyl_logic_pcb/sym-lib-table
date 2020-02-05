@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name mini_cherynobyl_logic_pcb)(type Legacy)(uri ${KIPRJMOD}/mini_cherynobyl_logic_pcb.lib)(options "")(descr ""))
+)

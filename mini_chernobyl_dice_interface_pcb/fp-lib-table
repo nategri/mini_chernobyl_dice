@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name mini_chernobyl_logic_pcb)(type KiCad)(uri /Users/nategri/projects/mini_chernobyl_dice/mini_chernobyl_logic_pcb/mini_chernobyl_logic_pcb.pretty)(options "")(descr ""))
+  (lib (name mini_chernobyl_dice_interface_pcb)(type KiCad)(uri ${KIPRJMOD}/mini_chernobyl_dice_interface_pcb.pretty)(options "")(descr ""))
+)

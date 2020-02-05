@@ -1,0 +1,9 @@
+led pins edge-to-edge offset (pin 2 on right): 10 mm and 35 mm, dig and then seg
+io pins edge-to-edge offset (pin 1 on right): 85 mm
+
+expand base to the right by 30 mm
+
+move LED display right 1.338 mm
+
+move LED display and rotary knob up 3 mm
+move key switch down 0.42 mm

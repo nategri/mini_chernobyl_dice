@@ -1,0 +1,613 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L mini_cherynobyl_logic_pcb:ADAFRUIT-FEATHER-328 U4
+U 1 1 5E26A70C
+P 6150 3900
+F 0 "U4" H 6550 2950 50  0000 C CNN
+F 1 "ADAFRUIT-FEATHER-328" V 6150 3750 50  0000 C CNN
+F 2 "mini_chernobyl_logic_pcb:ADAFRUIT-FEATHER" V 5950 4250 50  0001 C CNN
+F 3 "" V 5950 4250 50  0001 C CNN
+	1    6150 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L mini_cherynobyl_logic_pcb:74AHCT125 U2
+U 1 1 5E27679D
+P 4400 4150
+F 0 "U2" H 4700 3600 50  0000 C CNN
+F 1 "74AHCT125" V 4400 4100 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_LongPads" H 3850 4650 50  0001 C CNN
+F 3 "" H 3850 4650 50  0001 C CNN
+	1    4400 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5E27B370
+P 3850 3600
+F 0 "#PWR02" H 3850 3350 50  0001 C CNN
+F 1 "GND" H 3855 3427 50  0000 C CNN
+F 2 "" H 3850 3600 50  0001 C CNN
+F 3 "" H 3850 3600 50  0001 C CNN
+	1    3850 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 3550 4150 3500
+Wire Wire Line
+	4450 3550 4450 3500
+Wire Wire Line
+	4550 3550 4550 3500
+Wire Wire Line
+	4550 3500 4450 3500
+Connection ~ 4450 3500
+Wire Wire Line
+	4650 3550 4650 3500
+Wire Wire Line
+	4650 3500 4550 3500
+Connection ~ 4550 3500
+$Comp
+L power:+5V #PWR03
+U 1 1 5E27D34B
+P 4350 5400
+F 0 "#PWR03" H 4350 5250 50  0001 C CNN
+F 1 "+5V" H 4365 5573 50  0000 C CNN
+F 2 "" H 4350 5400 50  0001 C CNN
+F 3 "" H 4350 5400 50  0001 C CNN
+	1    4350 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 4200 5550 4500
+Wire Wire Line
+	5550 4500 5650 4500
+Wire Wire Line
+	4150 3500 4450 3500
+Wire Wire Line
+	2550 4900 2600 4900
+Wire Wire Line
+	2550 4950 2550 4900
+Wire Wire Line
+	2500 4950 2550 4950
+Wire Wire Line
+	2550 5000 2600 5000
+Wire Wire Line
+	2550 5050 2550 5000
+Wire Wire Line
+	2500 5050 2550 5050
+Wire Wire Line
+	2550 5100 2600 5100
+Wire Wire Line
+	2550 5150 2550 5100
+Wire Wire Line
+	2500 5150 2550 5150
+Wire Wire Line
+	2550 5200 2600 5200
+Wire Wire Line
+	2550 5250 2550 5200
+Wire Wire Line
+	2500 5250 2550 5250
+Wire Wire Line
+	2550 5300 2600 5300
+Wire Wire Line
+	2550 5350 2550 5300
+Wire Wire Line
+	2500 5350 2550 5350
+Wire Wire Line
+	2550 5400 2600 5400
+Wire Wire Line
+	2550 5450 2550 5400
+Wire Wire Line
+	2500 5450 2550 5450
+Wire Wire Line
+	2550 5500 2600 5500
+Wire Wire Line
+	2550 5550 2550 5500
+Wire Wire Line
+	2500 5550 2550 5550
+Wire Wire Line
+	2550 5600 2600 5600
+Wire Wire Line
+	2550 5650 2550 5600
+Wire Wire Line
+	2500 5650 2550 5650
+$Comp
+L mini_cherynobyl_logic_pcb:DISPLAY-SEG H1
+U 1 1 5E2833D8
+P 2300 4300
+F 0 "H1" H 2050 3850 50  0000 C CNN
+F 1 "DISPLAY-SEG" V 2050 4300 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical" H 2300 4250 50  0001 C CNN
+F 3 "" H 2300 4250 50  0001 C CNN
+	1    2300 4300
+	1    0    0    1   
+$EndComp
+$Comp
+L mini_cherynobyl_logic_pcb:DISPLAY-DIG H2
+U 1 1 5E28248D
+P 2300 5300
+F 0 "H2" H 2050 4850 50  0000 C CNN
+F 1 "DISPLAY-DIG" V 2050 5300 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical" H 2300 5250 50  0001 C CNN
+F 3 "" H 2300 5250 50  0001 C CNN
+	1    2300 5300
+	1    0    0    1   
+$EndComp
+$Comp
+L mini_cherynobyl_logic_pcb:MAX7219 U1
+U 1 1 5E27E233
+P 3050 4800
+F 0 "U1" H 3100 5865 50  0000 C CNN
+F 1 "MAX7219" H 3100 5774 50  0000 C CNN
+F 2 "Package_DIP:DIP-24_W7.62mm_LongPads" H 2900 5250 50  0001 C CNN
+F 3 "" H 2900 5250 50  0001 C CNN
+	1    3050 4800
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3950 4000 3600 4000
+Wire Wire Line
+	3950 4100 3800 4100
+Wire Wire Line
+	3800 4100 3800 5000
+Wire Wire Line
+	3800 5000 3600 5000
+Wire Wire Line
+	2500 3950 2550 3950
+Wire Wire Line
+	2550 3950 2550 4000
+Wire Wire Line
+	2550 4000 2600 4000
+Wire Wire Line
+	2500 4050 2550 4050
+Wire Wire Line
+	2550 4050 2550 4100
+Wire Wire Line
+	2550 4100 2600 4100
+Wire Wire Line
+	2500 4150 2550 4150
+Wire Wire Line
+	2550 4150 2550 4200
+Wire Wire Line
+	2550 4200 2600 4200
+Wire Wire Line
+	2500 4250 2550 4250
+Wire Wire Line
+	2550 4250 2550 4300
+Wire Wire Line
+	2550 4300 2600 4300
+Wire Wire Line
+	2500 4350 2550 4350
+Wire Wire Line
+	2550 4350 2550 4400
+Wire Wire Line
+	2550 4400 2600 4400
+Wire Wire Line
+	2500 4450 2550 4450
+Wire Wire Line
+	2550 4450 2550 4500
+Wire Wire Line
+	2550 4500 2600 4500
+Wire Wire Line
+	2500 4550 2550 4550
+Wire Wire Line
+	2550 4550 2550 4600
+Wire Wire Line
+	2550 4600 2600 4600
+Wire Wire Line
+	2500 4650 2550 4650
+Wire Wire Line
+	2550 4650 2550 4700
+Wire Wire Line
+	2550 4700 2600 4700
+Wire Wire Line
+	4150 4750 4150 5200
+Wire Wire Line
+	3600 5600 4150 5600
+Connection ~ 4150 5600
+$Comp
+L Device:R_Small R1
+U 1 1 5E2927D8
+P 3950 5200
+F 0 "R1" V 4000 5350 50  0000 C CNN
+F 1 "10K" V 3850 5200 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 3950 5200 50  0001 C CNN
+F 3 "~" H 3950 5200 50  0001 C CNN
+	1    3950 5200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 4200 3850 4200
+Wire Wire Line
+	3850 4200 3850 4700
+Wire Wire Line
+	3850 4700 3600 4700
+Wire Wire Line
+	3750 4100 3750 5200
+Wire Wire Line
+	3750 5200 3850 5200
+Wire Wire Line
+	4050 5200 4150 5200
+Connection ~ 4150 5200
+Wire Wire Line
+	4150 5200 4150 5500
+$Comp
+L power:GND #PWR01
+U 1 1 5E29D41B
+P 3800 5900
+F 0 "#PWR01" H 3800 5650 50  0001 C CNN
+F 1 "GND" H 3805 5727 50  0000 C CNN
+F 2 "" H 3800 5900 50  0001 C CNN
+F 3 "" H 3800 5900 50  0001 C CNN
+	1    3800 5900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 5400 3800 5400
+Wire Wire Line
+	3800 5400 3800 5500
+Wire Wire Line
+	3600 5500 3800 5500
+Connection ~ 3800 5500
+Wire Wire Line
+	3800 5500 3800 5900
+Wire Wire Line
+	3600 4100 3750 4100
+$Comp
+L power:+5V #PWR04
+U 1 1 5E2B111A
+P 4900 2850
+F 0 "#PWR04" H 4900 2700 50  0001 C CNN
+F 1 "+5V" H 4915 3023 50  0000 C CNN
+F 2 "" H 4900 2850 50  0001 C CNN
+F 3 "" H 4900 2850 50  0001 C CNN
+	1    4900 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 1350 4700 1350
+Connection ~ 5000 1350
+Wire Wire Line
+	5000 1450 5000 1350
+Wire Wire Line
+	5100 1350 5000 1350
+Connection ~ 5100 1350
+Wire Wire Line
+	5100 1450 5100 1350
+Wire Wire Line
+	4700 1350 4700 1450
+Wire Wire Line
+	5200 1350 5100 1350
+Wire Wire Line
+	5200 1450 5200 1350
+$Comp
+L power:GND #PWR06
+U 1 1 5E2A75B6
+P 5500 1350
+F 0 "#PWR06" H 5500 1100 50  0001 C CNN
+F 1 "GND" H 5505 1177 50  0000 C CNN
+F 2 "" H 5500 1350 50  0001 C CNN
+F 3 "" H 5500 1350 50  0001 C CNN
+	1    5500 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L mini_cherynobyl_logic_pcb:74AHCT125 U3
+U 1 1 5E289E64
+P 4950 2050
+F 0 "U3" H 5250 1500 50  0000 C CNN
+F 1 "74AHCT125" V 4950 2000 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_LongPads" H 4400 2550 50  0001 C CNN
+F 3 "" H 4400 2550 50  0001 C CNN
+	1    4950 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 3400 5650 1900
+Wire Wire Line
+	5650 1900 5400 1900
+Wire Wire Line
+	5650 3500 5600 3500
+Wire Wire Line
+	5600 3500 5600 2000
+Wire Wire Line
+	5600 2000 5400 2000
+Wire Wire Line
+	5650 3600 5550 3600
+Wire Wire Line
+	5550 3600 5550 2100
+Wire Wire Line
+	5550 2100 5400 2100
+$Comp
+L Device:C_Small C1
+U 1 1 5E2D9B69
+P 3950 5500
+F 0 "C1" V 4000 5600 50  0000 C CNN
+F 1 "0.1 uF" V 3800 5500 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D6.0mm_W2.5mm_P5.00mm" H 3950 5500 50  0001 C CNN
+F 3 "~" H 3950 5500 50  0001 C CNN
+	1    3950 5500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3800 5500 3850 5500
+Wire Wire Line
+	4050 5500 4150 5500
+Connection ~ 4150 5500
+Wire Wire Line
+	4150 5500 4150 5600
+$Comp
+L mini_cherynobyl_logic_pcb:GEIGER H4
+U 1 1 5E2E7EE6
+P 7500 2850
+F 0 "H4" V 7450 2550 50  0000 L CNN
+F 1 "GEIGER" V 7550 2350 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 7450 2800 50  0001 C CNN
+F 3 "" H 7450 2800 50  0001 C CNN
+	1    7500 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R4
+U 1 1 5E2EA1A1
+P 7500 3250
+F 0 "R4" H 7350 3300 50  0000 L CNN
+F 1 "2K2" H 7300 3200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 7500 3250 50  0001 C CNN
+F 3 "~" H 7500 3250 50  0001 C CNN
+	1    7500 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 5E2EA733
+P 7500 3550
+F 0 "R5" H 7650 3500 50  0000 R CNN
+F 1 "3K3" H 7700 3600 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 7500 3550 50  0001 C CNN
+F 3 "~" H 7500 3550 50  0001 C CNN
+	1    7500 3550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6700 3800 6850 3800
+$Comp
+L power:GND #PWR08
+U 1 1 5E2F81A5
+P 7600 5250
+F 0 "#PWR08" H 7600 5000 50  0001 C CNN
+F 1 "GND" H 7605 5077 50  0000 C CNN
+F 2 "" H 7600 5250 50  0001 C CNN
+F 3 "" H 7600 5250 50  0001 C CNN
+	1    7600 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 2100 4400 2100
+Wire Wire Line
+	4400 2100 4400 3100
+Wire Wire Line
+	4400 3100 6200 3100
+Wire Wire Line
+	8000 700  4400 700 
+Wire Wire Line
+	4400 700  4400 2000
+Wire Wire Line
+	4400 2000 4500 2000
+Wire Wire Line
+	7900 800  4500 800 
+Wire Wire Line
+	4500 800  4500 1900
+Wire Wire Line
+	4850 4200 5550 4200
+Wire Wire Line
+	4850 4100 5650 4100
+Wire Wire Line
+	4850 4000 5650 4000
+$Comp
+L Device:R_Small R2
+U 1 1 5E392634
+P 5250 5200
+F 0 "R2" V 5054 5200 50  0000 C CNN
+F 1 "3K3" V 5145 5200 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 5250 5200 50  0001 C CNN
+F 3 "~" H 5250 5200 50  0001 C CNN
+	1    5250 5200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R3
+U 1 1 5E392C3F
+P 5650 5200
+F 0 "R3" V 5454 5200 50  0000 C CNN
+F 1 "2K2" V 5545 5200 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 5650 5200 50  0001 C CNN
+F 3 "~" H 5650 5200 50  0001 C CNN
+	1    5650 5200
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR05
+U 1 1 5E393284
+P 5050 5450
+F 0 "#PWR05" H 5050 5200 50  0001 C CNN
+F 1 "GND" H 5055 5277 50  0000 C CNN
+F 2 "" H 5050 5450 50  0001 C CNN
+F 3 "" H 5050 5450 50  0001 C CNN
+	1    5050 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L mini_cherynobyl_logic_pcb:POWER-STEP-UP H3
+U 1 1 5E3AB129
+P 6600 1350
+F 0 "H3" V 6554 1528 50  0000 L CNN
+F 1 "POWER-STEP-UP" V 6645 1528 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 6650 1250 50  0001 C CNN
+F 3 "" H 6650 1250 50  0001 C CNN
+	1    6600 1350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6400 1350 5500 1350
+Connection ~ 5200 1350
+$Comp
+L power:+5V #PWR07
+U 1 1 5E3B9434
+P 6300 1150
+F 0 "#PWR07" H 6300 1000 50  0001 C CNN
+F 1 "+5V" H 6315 1323 50  0000 C CNN
+F 2 "" H 6300 1150 50  0001 C CNN
+F 3 "" H 6300 1150 50  0001 C CNN
+	1    6300 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 1150 6300 1250
+Wire Wire Line
+	6300 1250 6400 1250
+Text Notes 1200 3700 0    100  ~ 0
+7-Segment Display Interface
+Text Notes 3750 2800 0    100  ~ 0
+Level\nShifters
+Text Notes 6800 1850 0    100  ~ 0
+3V3 to 5V\nConverter
+Text Notes 6550 2550 0    100  ~ 0
+Geiger Counter
+Text Notes 8450 5150 0    100  ~ 0
+I/O Pins
+Text Notes 6400 5050 0    100  ~ 0
+MCU
+Wire Wire Line
+	6200 3150 6200 3100
+Connection ~ 6200 3100
+Wire Wire Line
+	7500 3050 7500 3150
+Wire Wire Line
+	7500 3350 7500 3400
+Wire Wire Line
+	7500 3400 6850 3400
+Wire Wire Line
+	6850 3400 6850 3800
+Connection ~ 7500 3400
+Wire Wire Line
+	7500 3400 7500 3450
+Wire Wire Line
+	7400 3050 7400 3100
+Wire Wire Line
+	6200 3100 7400 3100
+Wire Wire Line
+	5850 4900 5850 5200
+Wire Wire Line
+	5150 5200 5050 5200
+Wire Wire Line
+	5050 5200 5050 5450
+Wire Wire Line
+	5650 3700 5450 3700
+Wire Wire Line
+	5450 3700 5450 5200
+Wire Wire Line
+	5350 5200 5450 5200
+Wire Wire Line
+	5450 5200 5550 5200
+Connection ~ 5450 5200
+Wire Wire Line
+	5750 5200 5850 5200
+Wire Wire Line
+	4150 3500 3850 3500
+Wire Wire Line
+	3850 3500 3850 3600
+Connection ~ 4150 3500
+Connection ~ 5500 1350
+Wire Wire Line
+	5500 1350 5200 1350
+Wire Wire Line
+	4150 5600 4350 5600
+Wire Wire Line
+	4350 5600 4350 5400
+Wire Wire Line
+	4700 2950 4900 2950
+Wire Wire Line
+	4900 2950 4900 2850
+Wire Wire Line
+	4700 2650 4700 2950
+Wire Wire Line
+	7600 3050 7600 3700
+Wire Wire Line
+	6400 1450 6400 3150
+Wire Wire Line
+	7500 3700 7600 3700
+Wire Wire Line
+	7500 3700 7500 3650
+Wire Wire Line
+	8000 700  8000 4250
+Wire Wire Line
+	7900 800  7900 4350
+Wire Wire Line
+	8250 4350 7900 4350
+Wire Wire Line
+	8000 4250 8250 4250
+$Comp
+L mini_cherynobyl_logic_pcb:IO H5
+U 1 1 5E29771D
+P 8550 4300
+F 0 "H5" H 8322 4279 50  0000 R CNN
+F 1 "IO" H 8322 4370 50  0000 R CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x10_P2.54mm_Vertical" H 8600 4600 50  0001 C CNN
+F 3 "" H 8600 4600 50  0001 C CNN
+	1    8550 4300
+	-1   0    0    -1  
+$EndComp
+Connection ~ 7600 3700
+Wire Wire Line
+	8250 3900 6700 3900
+Wire Wire Line
+	8250 4000 6700 4000
+Wire Wire Line
+	8250 4100 6700 4100
+Wire Wire Line
+	8250 4500 7000 4500
+Wire Wire Line
+	7000 4500 7000 4200
+Wire Wire Line
+	7000 4200 6700 4200
+Wire Wire Line
+	8250 4650 6950 4650
+Wire Wire Line
+	6950 4650 6950 4300
+Wire Wire Line
+	6950 4300 6700 4300
+Wire Wire Line
+	8250 4750 6900 4750
+Wire Wire Line
+	6900 4750 6900 4400
+Wire Wire Line
+	6900 4400 6700 4400
+Wire Wire Line
+	8250 4900 7600 4900
+Wire Wire Line
+	7600 3700 7600 4900
+Connection ~ 7600 4900
+Wire Wire Line
+	7600 4900 7600 5250
+Wire Wire Line
+	6700 3700 7450 3700
+Wire Wire Line
+	7450 3700 7450 3750
+Wire Wire Line
+	7450 3750 8250 3750
+$EndSCHEMATC

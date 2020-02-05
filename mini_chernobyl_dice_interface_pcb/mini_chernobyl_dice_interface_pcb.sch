@@ -1,0 +1,477 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:Speaker LS1
+U 1 1 5E4FC5FD
+P 2750 5600
+F 0 "LS1" H 2950 5700 50  0000 L CNN
+F 1 "SPEAKER" H 2900 5800 50  0000 L CNN
+F 2 "Buzzer_Beeper:Buzzer_TDK_PS1240P02BT_D12.2mm_H6.5mm" H 2750 5400 50  0001 C CNN
+F 3 "~" H 2740 5550 50  0001 C CNN
+	1    2750 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Rotary_Encoder_Switch SW2
+U 1 1 5E4FD2AB
+P 3150 4750
+F 0 "SW2" V 3250 4450 50  0000 C CNN
+F 1 "ROTARY-ENCODER" V 3350 4200 50  0000 C CNN
+F 2 "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm" H 3000 4910 50  0001 C CNN
+F 3 "~" H 3150 5010 50  0001 C CNN
+	1    3150 4750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5E27F3D5
+P 3150 4250
+F 0 "SW1" H 3150 4535 50  0000 C CNN
+F 1 "SW_Push" H 3150 4444 50  0000 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 3150 4450 50  0001 C CNN
+F 3 "~" H 3150 4450 50  0001 C CNN
+	1    3150 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Display_Character:CC56-12EWA U1
+U 1 1 5E27FE8D
+P 6150 3050
+F 0 "U1" H 6150 3717 50  0000 C CNN
+F 1 "CC56-12EWA" H 6150 3626 50  0000 C CNN
+F 2 "Display_7Segment:CA56-12EWA" H 6150 2450 50  0001 C CNN
+F 3 "http://www.kingbrightusa.com/images/catalog/SPEC/CA56-12EWA.pdf" H 5720 3080 50  0001 C CNN
+	1    6150 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Display_Character:CC56-12EWA U2
+U 1 1 5E2819D6
+P 9500 3050
+F 0 "U2" H 9500 3717 50  0000 C CNN
+F 1 "CC56-12EWA" H 9500 3626 50  0000 C CNN
+F 2 "Display_7Segment:CA56-12EWA" H 9500 2450 50  0001 C CNN
+F 3 "http://www.kingbrightusa.com/images/catalog/SPEC/CA56-12EWA.pdf" H 9070 3080 50  0001 C CNN
+	1    9500 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L mini_chernobyl_interface_pcb:DISPLAY-SEG H2
+U 1 1 5E283F3B
+P 4050 1450
+F 0 "H2" H 4058 2065 50  0000 C CNN
+F 1 "DISPLAY-SEG" H 4058 1974 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical" H 4050 1400 50  0001 C CNN
+F 3 "" H 4050 1400 50  0001 C CNN
+	1    4050 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L mini_chernobyl_interface_pcb:DISPLAY-DIG H3
+U 1 1 5E28468A
+P 10050 4750
+F 0 "H3" H 10058 5365 50  0000 C CNN
+F 1 "DISPLAY-DIG" H 10058 5274 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical" H 10050 4700 50  0001 C CNN
+F 3 "" H 10050 4700 50  0001 C CNN
+	1    10050 4750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L mini_chernobyl_interface_pcb:BICOLOR-LED D1
+U 1 1 5E284F1E
+P 2450 6500
+F 0 "D1" V 2100 6400 50  0000 L CNN
+F 1 "BICOLOR-LED" H 2250 6850 50  0001 C CNN
+F 2 "mini_chernobyl_dice_interface_pcb:BICOLOR-LED" V 2250 6650 50  0001 C CNN
+F 3 "" V 2250 6650 50  0001 C CNN
+	1    2450 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R2
+U 1 1 5E2E86D9
+P 2550 6200
+F 0 "R2" H 2600 6250 50  0000 L CNN
+F 1 "?K" V 2450 6150 50  0001 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 2550 6200 50  0001 C CNN
+F 3 "~" H 2550 6200 50  0001 C CNN
+	1    2550 6200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R1
+U 1 1 5E2E8D1B
+P 2350 6200
+F 0 "R1" H 2400 6250 50  0000 L CNN
+F 1 "?K" V 2250 6150 50  0001 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 2350 6200 50  0001 C CNN
+F 3 "~" H 2350 6200 50  0001 C CNN
+	1    2350 6200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R3
+U 1 1 5E2E9382
+P 3350 5750
+F 0 "R3" V 3250 5700 50  0000 L CNN
+F 1 "R_Small" V 3250 5600 50  0001 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 3350 5750 50  0001 C CNN
+F 3 "~" H 3350 5750 50  0001 C CNN
+	1    3350 5750
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 5E2E9A23
+P 3350 6150
+F 0 "R5" V 3250 6100 50  0000 L CNN
+F 1 "R_Small" V 3250 6000 50  0001 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 3350 6150 50  0001 C CNN
+F 3 "~" H 3350 6150 50  0001 C CNN
+	1    3350 6150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R4
+U 1 1 5E2EA239
+P 3350 5950
+F 0 "R4" V 3250 5900 50  0000 L CNN
+F 1 "R_Small" V 3250 5800 50  0001 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" H 3350 5950 50  0001 C CNN
+F 3 "~" H 3350 5950 50  0001 C CNN
+	1    3350 5950
+	0    1    1    0   
+$EndComp
+$Comp
+L mini_chernobyl_interface_pcb:IO H1
+U 1 1 5E3A8F2B
+P 1650 5650
+F 0 "H1" H 1708 6465 50  0000 C CNN
+F 1 "IO" H 1708 6374 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x10_P2.54mm_Vertical" H 1550 6900 50  0001 C CNN
+F 3 "" H 1550 6900 50  0001 C CNN
+	1    1650 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 6300 2550 6350
+Wire Wire Line
+	2350 6300 2350 6350
+Wire Wire Line
+	1950 6100 2350 6100
+$Comp
+L Device:LED_ALT D4
+U 1 1 5E2EBE25
+P 3600 6150
+F 0 "D4" H 3600 6250 50  0000 C CNN
+F 1 "LED_ALT" H 3593 6275 50  0001 C CNN
+F 2 "LED_THT:LED_D3.0mm" H 3600 6150 50  0001 C CNN
+F 3 "~" H 3600 6150 50  0001 C CNN
+	1    3600 6150
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:LED_ALT D3
+U 1 1 5E2EB684
+P 3600 5950
+F 0 "D3" H 3600 6050 50  0000 C CNN
+F 1 "LED_ALT" H 3593 6075 50  0001 C CNN
+F 2 "LED_THT:LED_D3.0mm" H 3600 5950 50  0001 C CNN
+F 3 "~" H 3600 5950 50  0001 C CNN
+	1    3600 5950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:LED_ALT D2
+U 1 1 5E2EAB47
+P 3600 5750
+F 0 "D2" H 3600 5850 50  0000 C CNN
+F 1 "LED_ALT" H 3593 5875 50  0001 C CNN
+F 2 "LED_THT:LED_D3.0mm" H 3600 5750 50  0001 C CNN
+F 3 "~" H 3600 5750 50  0001 C CNN
+	1    3600 5750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1950 6000 2550 6000
+Wire Wire Line
+	2550 6000 2550 6100
+Wire Wire Line
+	3250 5750 3250 5950
+Connection ~ 3250 5950
+Wire Wire Line
+	3250 5950 3250 6150
+Wire Wire Line
+	3750 5750 3800 5750
+Wire Wire Line
+	3800 5750 3800 5950
+Wire Wire Line
+	3800 5950 3750 5950
+Wire Wire Line
+	3800 5950 3800 6150
+Wire Wire Line
+	3800 6150 3750 6150
+Connection ~ 3800 5950
+Wire Wire Line
+	3050 5050 2700 5050
+Wire Wire Line
+	2700 5050 2700 5350
+Wire Wire Line
+	2700 5350 1950 5350
+Wire Wire Line
+	3250 5050 3250 5150
+Wire Wire Line
+	3250 5150 2800 5150
+Wire Wire Line
+	2800 5150 2800 5450
+Wire Wire Line
+	2800 5450 1950 5450
+Wire Wire Line
+	1950 5250 2600 5250
+Wire Wire Line
+	2600 5250 2600 4450
+Wire Wire Line
+	2600 4450 3050 4450
+Wire Wire Line
+	1950 5100 2500 5100
+Wire Wire Line
+	2500 5100 2500 4250
+Wire Wire Line
+	2500 4250 2950 4250
+Wire Wire Line
+	1950 5850 2800 5850
+Wire Wire Line
+	2800 5850 2800 5950
+Wire Wire Line
+	2800 5950 3250 5950
+Wire Wire Line
+	1950 5600 2550 5600
+Wire Wire Line
+	1950 5700 2550 5700
+$Comp
+L power:GND #PWR01
+U 1 1 5E3E644C
+P 4050 6950
+F 0 "#PWR01" H 4050 6700 50  0001 C CNN
+F 1 "GND" H 4055 6777 50  0000 C CNN
+F 2 "" H 4050 6950 50  0001 C CNN
+F 3 "" H 4050 6950 50  0001 C CNN
+	1    4050 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 4250 4050 4250
+Wire Wire Line
+	4050 4250 4050 4450
+Wire Wire Line
+	3150 5050 3150 5250
+Wire Wire Line
+	3150 5250 4050 5250
+Connection ~ 4050 5250
+Wire Wire Line
+	4050 5250 4050 5950
+Wire Wire Line
+	3800 5950 4050 5950
+Connection ~ 4050 5950
+Wire Wire Line
+	4050 5950 4050 6800
+Wire Wire Line
+	2450 6700 2450 6800
+Wire Wire Line
+	2450 6800 4050 6800
+Connection ~ 4050 6800
+Wire Wire Line
+	4050 6800 4050 6950
+Wire Wire Line
+	1950 6250 1950 6800
+Wire Wire Line
+	1950 6800 2450 6800
+Connection ~ 2450 6800
+Wire Wire Line
+	10600 3450 10600 3650
+Wire Wire Line
+	10600 3650 9700 3650
+Wire Wire Line
+	10600 3350 10700 3350
+Wire Wire Line
+	10700 3350 10700 3750
+Wire Wire Line
+	10700 3750 9800 3750
+Wire Wire Line
+	9900 3850 10800 3850
+Wire Wire Line
+	10800 3850 10800 3250
+Wire Wire Line
+	10800 3250 10600 3250
+Wire Wire Line
+	10600 3150 10900 3150
+Wire Wire Line
+	10900 3150 10900 3950
+Wire Wire Line
+	10900 3950 10000 3950
+Wire Wire Line
+	10000 3950 10000 4550
+Wire Wire Line
+	9900 3850 9900 4550
+Wire Wire Line
+	9800 3750 9800 4550
+Wire Wire Line
+	9700 3650 9700 4550
+Wire Wire Line
+	10100 4550 10100 4400
+Wire Wire Line
+	10100 4400 7250 4400
+Wire Wire Line
+	7250 4400 7250 3450
+Wire Wire Line
+	7250 3350 7350 3350
+Wire Wire Line
+	7350 3350 7350 4300
+Wire Wire Line
+	7350 4300 10200 4300
+Wire Wire Line
+	10200 4300 10200 4550
+Wire Wire Line
+	10300 4550 10300 4200
+Wire Wire Line
+	10300 4200 7450 4200
+Wire Wire Line
+	7450 4200 7450 3250
+Wire Wire Line
+	7450 3250 7250 3250
+Wire Wire Line
+	7250 3150 7550 3150
+Wire Wire Line
+	7550 3150 7550 4100
+Wire Wire Line
+	7550 4100 10400 4100
+Wire Wire Line
+	10400 4100 10400 4550
+Wire Wire Line
+	4250 1100 5050 1100
+Wire Wire Line
+	5050 1100 5050 2750
+Wire Wire Line
+	4250 1200 4950 1200
+Wire Wire Line
+	4950 1200 4950 2850
+Wire Wire Line
+	4950 2850 5050 2850
+Wire Wire Line
+	5050 2950 4850 2950
+Wire Wire Line
+	4850 2950 4850 1300
+Wire Wire Line
+	4850 1300 4250 1300
+Wire Wire Line
+	4250 1400 4750 1400
+Wire Wire Line
+	4750 1400 4750 3050
+Wire Wire Line
+	4750 3050 5050 3050
+Wire Wire Line
+	5050 3150 4650 3150
+Wire Wire Line
+	4650 3150 4650 1500
+Wire Wire Line
+	4650 1500 4250 1500
+Wire Wire Line
+	4250 1600 4550 1600
+Wire Wire Line
+	4550 1600 4550 3250
+Wire Wire Line
+	4550 3250 5050 3250
+Wire Wire Line
+	5050 3350 4450 3350
+Wire Wire Line
+	4450 3350 4450 1700
+Wire Wire Line
+	4450 1700 4250 1700
+Wire Wire Line
+	4250 1800 4350 1800
+Wire Wire Line
+	4350 1800 4350 3450
+Wire Wire Line
+	4350 3450 5050 3450
+Wire Wire Line
+	5050 1100 8400 1100
+Wire Wire Line
+	8400 1100 8400 2750
+Connection ~ 5050 1100
+Wire Wire Line
+	4950 1200 8300 1200
+Wire Wire Line
+	8300 1200 8300 2850
+Wire Wire Line
+	8300 2850 8400 2850
+Connection ~ 4950 1200
+Wire Wire Line
+	8400 2950 8200 2950
+Wire Wire Line
+	8200 2950 8200 1300
+Wire Wire Line
+	8200 1300 4850 1300
+Connection ~ 4850 1300
+Wire Wire Line
+	4750 1400 8100 1400
+Wire Wire Line
+	8100 1400 8100 3050
+Wire Wire Line
+	8100 3050 8400 3050
+Connection ~ 4750 1400
+Wire Wire Line
+	8400 3150 8000 3150
+Wire Wire Line
+	8000 3150 8000 1500
+Wire Wire Line
+	8000 1500 4650 1500
+Connection ~ 4650 1500
+Wire Wire Line
+	4550 1600 7900 1600
+Wire Wire Line
+	7900 1600 7900 3250
+Wire Wire Line
+	7900 3250 8400 3250
+Connection ~ 4550 1600
+Wire Wire Line
+	8400 3350 7800 3350
+Wire Wire Line
+	7800 3350 7800 1700
+Wire Wire Line
+	7800 1700 4450 1700
+Connection ~ 4450 1700
+Wire Wire Line
+	4350 1800 7700 1800
+Wire Wire Line
+	7700 1800 7700 3450
+Wire Wire Line
+	7700 3450 8400 3450
+Connection ~ 4350 1800
+Wire Wire Line
+	3250 4450 4050 4450
+Connection ~ 4050 4450
+Wire Wire Line
+	4050 4450 4050 5250
+Text Notes 3650 5550 0    50   ~ 0
+UV LEDS
+Text Notes 2350 6950 0    50   ~ 0
+STATUS LED
+Text Notes 850  4600 0    100  ~ 0
+BUTTONS AND LEDS
+Text Notes 8600 2100 0    100  ~ 0
+7-SEGMENT DISPLAYS
+$EndSCHEMATC

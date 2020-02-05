@@ -1,0 +1,24 @@
+For LED 7-segment display:
+8 (DG0-DG7)
+8 (SGA=SGDP)
+
+For speaker (from level shifter):
+2
+
+Power:
+2 (3V3 and GND)
+
+Rotary switch:
+2
+
+Pushbutton:
+1
+
+UV LEDs:
+1
+
+Status LED:
+2
+
+Geiger:
+3
