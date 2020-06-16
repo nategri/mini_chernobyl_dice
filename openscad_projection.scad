@@ -1,3 +1,5 @@
-projection(cut = true)
-    translate([0, 0, -6])
-        import("/Users/nategri/Downloads/sample_holder_top.stl");
+projection(cut = false)
+    translate([0, 0, 0])
+        import(
+        "/Users/nategri/projects/mini_chernobyl_dice/enclosure/standard_wall_9x.stl"
+        );

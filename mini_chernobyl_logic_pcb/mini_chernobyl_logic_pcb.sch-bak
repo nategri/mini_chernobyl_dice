@@ -153,7 +153,7 @@ U 1 1 5E27E233
 P 3050 4800
 F 0 "U1" H 3100 5865 50  0000 C CNN
 F 1 "MAX7219" H 3100 5774 50  0000 C CNN
-F 2 "Package_DIP:DIP-24_W7.62mm" H 2900 5250 50  0001 C CNN
+F 2 "Package_DIP:DIP-24_W7.62mm_LongPads" H 2900 5250 50  0001 C CNN
 F 3 "" H 2900 5250 50  0001 C CNN
 	1    3050 4800
 	1    0    0    1   
@@ -451,17 +451,6 @@ F 3 "" H 5050 5450 50  0001 C CNN
 	1    5050 5450
 	1    0    0    -1  
 $EndComp
-$Comp
-L mini_cherynobyl_logic_pcb:POWER-STEP-UP H3
-U 1 1 5E3AB129
-P 6600 1350
-F 0 "H3" V 6554 1528 50  0000 L CNN
-F 1 "POWER-STEP-UP" V 6645 1528 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 6650 1250 50  0001 C CNN
-F 3 "" H 6650 1250 50  0001 C CNN
-	1    6600 1350
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	6400 1350 5500 1350
 Connection ~ 5200 1350
@@ -610,4 +599,15 @@ Wire Wire Line
 	7450 3700 7450 3750
 Wire Wire Line
 	7450 3750 8250 3750
+$Comp
+L mini_cherynobyl_logic_pcb:POWER-STEP-UP H3
+U 1 1 5E3AB129
+P 6600 1350
+F 0 "H3" V 6554 1528 50  0000 L CNN
+F 1 "POWER-STEP-UP" V 6645 1528 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 6650 1250 50  0001 C CNN
+F 3 "" H 6650 1250 50  0001 C CNN
+	1    6600 1350
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC

@@ -401,8 +401,6 @@ Wire Wire Line
 Wire Wire Line
 	4400 2100 4400 3100
 Wire Wire Line
-	4400 3100 6200 3100
-Wire Wire Line
 	8000 700  4400 700 
 Wire Wire Line
 	4400 700  4400 2000
@@ -451,19 +449,8 @@ F 3 "" H 5050 5450 50  0001 C CNN
 	1    5050 5450
 	1    0    0    -1  
 $EndComp
-$Comp
-L mini_cherynobyl_logic_pcb:POWER-STEP-UP H3
-U 1 1 5E3AB129
-P 6600 1350
-F 0 "H3" V 6554 1528 50  0000 L CNN
-F 1 "POWER-STEP-UP" V 6645 1528 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 6650 1250 50  0001 C CNN
-F 3 "" H 6650 1250 50  0001 C CNN
-	1    6600 1350
-	0    1    1    0   
-$EndComp
 Wire Wire Line
-	6400 1350 5500 1350
+	6400 1350 6200 1350
 Connection ~ 5200 1350
 $Comp
 L power:+5V #PWR07
@@ -493,9 +480,6 @@ I/O Pins
 Text Notes 6400 5050 0    100  ~ 0
 MCU
 Wire Wire Line
-	6200 3150 6200 3100
-Connection ~ 6200 3100
-Wire Wire Line
 	7500 3050 7500 3150
 Wire Wire Line
 	7500 3350 7500 3400
@@ -508,8 +492,6 @@ Wire Wire Line
 	7500 3400 7500 3450
 Wire Wire Line
 	7400 3050 7400 3100
-Wire Wire Line
-	6200 3100 7400 3100
 Wire Wire Line
 	5850 4900 5850 5200
 Wire Wire Line
@@ -610,4 +592,22 @@ Wire Wire Line
 	7450 3700 7450 3750
 Wire Wire Line
 	7450 3750 8250 3750
+$Comp
+L mini_cherynobyl_logic_pcb:POWER-STEP-UP H3
+U 1 1 5E3AB129
+P 6600 1350
+F 0 "H3" V 6554 1528 50  0000 L CNN
+F 1 "POWER-STEP-UP" V 6645 1528 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical" H 6650 1250 50  0001 C CNN
+F 3 "" H 6650 1250 50  0001 C CNN
+	1    6600 1350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4400 3100 7400 3100
+Wire Wire Line
+	6200 3150 6200 1350
+Connection ~ 6200 1350
+Wire Wire Line
+	6200 1350 5500 1350
 $EndSCHEMATC
