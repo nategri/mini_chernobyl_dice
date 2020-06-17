@@ -1,3 +1,5 @@
+#include <avr/sleep.h>
+
 #include "display.h"
 #include "speaker.h"
 
@@ -8,6 +10,11 @@
 
 #define STATUS_GREEN 5
 #define STATUS_RED A5
+
+#define USB_V A3
+#define BAT_V A6
+
+#define ROT_PB 2
 
 #define SPEAKER_TOGGLE 0
 
@@ -128,6 +135,14 @@ uint8_t getRandByte() {
   return randByte;
 }
 
+void wake_noop() {}
+
+float read_bat_volts() {
+  float raw = analogRead(BAT_V);
+  float volts = 3.3*(2*raw)/1024;
+  return volts;
+}
+
 void setup() {
   // put your setup code here, to run once:
 
@@ -143,9 +158,6 @@ void setup() {
   TIMSK0 |= _BV(OCIE0A);
   
   ledScreen = new LedScreen();
-  //char* displayDigits = LedScreen::number_to_digits(31415926, 0);
-  //ledScreen.display(displayDigits);
-
   speaker = new Speaker();
 
   // Turn on Geiger board
@@ -158,15 +170,56 @@ void setup() {
   // Attach geiger counter interrupt
   pinMode(GEIGER_TRG, INPUT_PULLUP);
   attachInterrupt(1, geigerEvent, FALLING);
+
+  // USB Voltage reader
+  //pinMode(USB_V, INPUT);
+  pinMode(STATUS_GREEN, OUTPUT);
+  pinMode(STATUS_RED, OUTPUT);
+
+  // Buttons and dial
+  pinMode(ROT_PB, INPUT_PULLUP);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
   uint8_t randByte = getRandByte();
-  char* displayDigits = LedScreen::number_to_digits(randByte, 0);
+  
+  /*char* displayDigits = LedScreen::number_to_digits(randByte, 0);
   delay(2000);
   ledScreen->display(displayDigits);
   delay(2000);
+  ledScreen->clear();*/
+
+  float bat_volts = read_bat_volts();
+  int int_volts = (int)(1000*bat_volts);
+  char* displayVal = LedScreen::number_to_digits(int_volts, 0);
+  ledScreen->displayVolts(displayVal);
+  delay(2000);
   ledScreen->clear();
+
+  // Logic for indicating USB power
+  int raw_usbv_adc = analogRead(USB_V);
+  if(raw_usbv_adc > 900) {
+    digitalWrite(STATUS_GREEN, HIGH);
+  }
+  else {
+    digitalWrite(STATUS_GREEN, LOW);
+  }
+
+  if(digitalRead(ROT_PB) == LOW) {
+    detachInterrupt(1);
+    attachInterrupt(digitalPinToInterrupt(ROT_PB), wake_noop, FALLING);
+    sleep_enable();
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+    digitalWrite(GEIGER_PWR, LOW);
+    ledScreen->sleep();
+    delay(500);
+    sleep_cpu();
+    sleep_disable();
+    detachInterrupt(digitalPinToInterrupt(ROT_PB));
+    ledScreen->wake();
+    attachInterrupt(1, geigerEvent, FALLING);
+    digitalWrite(GEIGER_PWR, HIGH);
+  }
 }

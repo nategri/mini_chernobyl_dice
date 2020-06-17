@@ -14,7 +14,10 @@ class LedScreen {
     static char* number_to_digits(unsigned long num, const unsigned char zero_pad);
     LedScreen();
     void display(char*);
+    void displayVolts(char*);
     void clear();
+    void sleep();
+    void wake();
 };
 
 #endif

@@ -25,7 +25,7 @@ static char* LedScreen::number_to_digits(unsigned long num, const unsigned char 
 LedScreen::LedScreen() {
   this->ledControl = new LedControl(LED_DISP_DATAIN, LED_DISP_CLK, LED_DISP_LOAD, 1);
   this->ledControl->shutdown(0, false);
-  this->ledControl->setIntensity(0,1);
+  this->ledControl->setIntensity(0,2);
   this->ledControl->clearDisplay(0);
 }
 
@@ -40,8 +40,24 @@ void LedScreen::display(char* digit) {
   }
 }
 
+
+void LedScreen::displayVolts(char* digit) {
+  LedScreen:display(digit);
+  this->ledControl->setDigit(0, 3, digit[3], true);
+}
+
 void LedScreen::clear() {
   for(char i=0; i<8; i++) {
     this->ledControl->setChar(0, i, ' ', false);
   }
+}
+
+void LedScreen::sleep() {
+  this->ledControl->shutdown(0, true);
+}
+
+void LedScreen::wake() {
+  this->ledControl->shutdown(0, false);
+  this->ledControl->setIntensity(0,2);
+  this->ledControl->clearDisplay(0);
 }
