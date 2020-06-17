@@ -1,4 +1,5 @@
-#include "LedControl.h"
+#include "display.h"
+#include "speaker.h"
 
 #define GEIGER_PWR A2
 #define GEIGER_TRG 3
@@ -8,14 +9,7 @@
 #define STATUS_GREEN 5
 #define STATUS_RED A5
 
-#define LED_DISP_DATAIN 11
-#define LED_DISP_CLK 13
-#define LED_DISP_LOAD 7
-
-#define SPEAKER_PIN_A A1
-#define SPEAKER_PIN_B A0
-
-#define SPEAKER_TOGGLE 1
+#define SPEAKER_TOGGLE 0
 
 volatile uint8_t didTrigger;
 volatile unsigned long prevTrigTime;
@@ -28,44 +22,13 @@ volatile uint8_t vnRingBuffWriteHead;
 // Global variables for state machine
 //uint8_t turboMode;
 uint8_t speakerOn;
-uint8_t trigLedsOn;
 
-//
-// SPEAKER CLASS
-//
-
-class Speaker {
-  public:
-    Speaker();
-    void clickBegin();
-    void clickEnd();
-};
-
-Speaker::Speaker() {
-  pinMode(SPEAKER_PIN_A, OUTPUT);
-  pinMode(SPEAKER_PIN_B, OUTPUT);
-
-  digitalWrite(SPEAKER_PIN_A, LOW);
-  digitalWrite(SPEAKER_PIN_B, LOW);
-}
-
-void Speaker::clickBegin() {
-  digitalWrite(SPEAKER_PIN_A, HIGH);
-  digitalWrite(SPEAKER_PIN_B, LOW);
-}
-
-void Speaker::clickEnd() {
-  digitalWrite(SPEAKER_PIN_A, LOW);
-  digitalWrite(SPEAKER_PIN_B, LOW);
-}
-
+LedScreen* ledScreen;
 Speaker* speaker;
 
 
 void geigerEvent() {
-  if(trigLedsOn) {
-    digitalWrite(UV_LED_PIN, HIGH);
-  }
+  digitalWrite(UV_LED_PIN, HIGH);
 
   if(speakerOn) {
     speaker->clickBegin();
@@ -105,71 +68,6 @@ ISR(TIMER0_COMPA_vect) {
   vnRingBuffWriteHead++;
 }
 
-//
-// DISPLAY CLASS
-//
-
-class LedScreen {
-  private:
-    LedControl* ledControl;
-  public:
-    static char* number_to_digits(unsigned long num, const unsigned char zero_pad);
-    LedScreen();
-    void display(char*);
-    void clear();
-};
-
-static char* LedScreen::number_to_digits(unsigned long num, const unsigned char zero_pad) {
-  static char digits[8];
-  for(int i=0; i<8; i++) {
-    unsigned long pow10 = pow(10, i) + 0.5;
-    digits[i] = (num / pow10) % 10;
-  }
-
-  if(!zero_pad) {
-    // Clear leading zeros
-    for(int i=7; i>=1; i--) {
-      if(digits[i] != 0) {
-        break;
-      }
-      else {
-        digits[i] = -1;
-      }
-    }
-  }
-
-  return digits;
-}
-
-LedScreen::LedScreen() {
-  this->ledControl = new LedControl(LED_DISP_DATAIN, LED_DISP_CLK, LED_DISP_LOAD, 1);
-  this->ledControl->shutdown(0, false);
-  this->ledControl->setIntensity(0,1);
-  this->ledControl->clearDisplay(0);
-}
-
-void LedScreen::display(char* digit) {
-  for(char i=0; i<8; i++) {
-    if(digit[i] < 0) {
-      this->ledControl->setChar(0, i, ' ', false);
-    }
-    else {
-      this->ledControl->setDigit(0, i, digit[i], false);
-    }
-  }
-}
-
-void LedScreen::clear() {
-  for(char i=0; i<8; i++) {
-    this->ledControl->setChar(0, i, ' ', false);
-  }
-}
-
-//
-// END DISPLAY CLASS
-//
-
-LedScreen* ledScreen;
 
 uint8_t getRandByte() {
   
@@ -260,8 +158,6 @@ void setup() {
   // Attach geiger counter interrupt
   pinMode(GEIGER_TRG, INPUT_PULLUP);
   attachInterrupt(1, geigerEvent, FALLING);
-
-  trigLedsOn = 1;
 }
 
 void loop() {
