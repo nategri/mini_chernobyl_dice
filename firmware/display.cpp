@@ -58,6 +58,14 @@ void LedScreen::sleep() {
 
 void LedScreen::wake() {
   this->ledControl->shutdown(0, false);
-  this->ledControl->setIntensity(0,2);
+  this->ledControl->setIntensity(0, 2);
   this->ledControl->clearDisplay(0);
+}
+
+void LedScreen::displaySettings(uint8_t diceNum, uint8_t diceSize) {
+  this->ledControl->clearDisplay(0);
+  this->ledControl->setDigit(0, 0, diceSize - (diceSize/10), false);
+  this->ledControl->setDigit(0, 1, (diceSize/10), false);
+  this->ledControl->setChar(0, 2, 'd', false);
+  this->ledControl->setDigit(0, 3, diceNum, false);
 }
