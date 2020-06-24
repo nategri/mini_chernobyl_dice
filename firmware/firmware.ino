@@ -6,6 +6,7 @@
 #include "display.h"
 #include "speaker.h"
 #include "QuantumRNG.h"
+#include "StatusLed.h"
 
 //
 // Microcontroller pins

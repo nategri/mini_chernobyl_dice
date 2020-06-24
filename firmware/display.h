@@ -16,6 +16,7 @@ class LedScreen {
     void display(char*);
     void displayVolts(char*);
     void displaySettings(uint8_t, uint8_t);
+    void displayRolls(uint8_t*);
     void clear();
     void sleep();
     void wake();

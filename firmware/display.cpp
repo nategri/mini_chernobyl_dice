@@ -52,6 +52,32 @@ void LedScreen::clear() {
   }
 }
 
+void LedScreen::displaySettings(uint8_t diceNum, uint8_t diceSize) {
+  this->ledControl->clearDisplay(0);
+  this->ledControl->setDigit(0, 0, diceSize - (diceSize/10), false);
+  this->ledControl->setDigit(0, 1, (diceSize/10), false);
+  this->ledControl->setChar(0, 2, 'd', false);
+  this->ledControl->setDigit(0, 3, diceNum, false);
+}
+
+void LedScreen::displayRolls(uint8_t* rolls) {
+  uint8_t digitIdx = 0;
+  for(uint8_t i = 0; i < 4; i++) {
+    if(rolls[i] >= 0) {
+      uint8_t tensDigit = (rolls[i]/10);
+      uint8_t onesDigit = rolls[i] - tensDigit;
+      this->ledControl->setDigit(0, digitIdx, onesDigit, false);
+      if(onesDigit > 0) {
+        this->ledControl->setDigit(0, digitIdx+1, tensDigit, true);
+      }
+      else {
+        this->ledControl->setChar(0, digitIdx+1, ' ', true);
+      }
+    }
+    digitIdx += 2;
+  }
+}
+
 void LedScreen::sleep() {
   this->ledControl->shutdown(0, true);
 }
@@ -60,12 +86,4 @@ void LedScreen::wake() {
   this->ledControl->shutdown(0, false);
   this->ledControl->setIntensity(0, 2);
   this->ledControl->clearDisplay(0);
-}
-
-void LedScreen::displaySettings(uint8_t diceNum, uint8_t diceSize) {
-  this->ledControl->clearDisplay(0);
-  this->ledControl->setDigit(0, 0, diceSize - (diceSize/10), false);
-  this->ledControl->setDigit(0, 1, (diceSize/10), false);
-  this->ledControl->setChar(0, 2, 'd', false);
-  this->ledControl->setDigit(0, 3, diceNum, false);
 }
