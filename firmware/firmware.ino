@@ -7,6 +7,7 @@
 #include "speaker.h"
 #include "QuantumRNG.h"
 #include "StatusLed.h"
+#include "SettingsDial.h"
 
 //
 // Microcontroller pins
@@ -17,13 +18,8 @@
 
 #define UV_LED_PIN 6
 
-#define STATUS_GREEN 5
-#define STATUS_RED A5
-
 #define USB_V A3
 #define BAT_V A6
-
-#define ROT_PB 2
 
 //
 // Global variables
@@ -41,6 +37,8 @@ uint8_t speakerOn;
 LedScreen* ledScreen;
 Speaker* speaker;
 QuantumRNG* quantumRand;
+StatusLed* statusLed;
+SettingsDial* settingsDial;
 
 //
 // Interrupt functions
@@ -127,6 +125,8 @@ void setup() {
   ledScreen = new LedScreen();
   speaker = new Speaker();
   quantumRand = new QuantumRNG(ledScreen, vnRingBuff, &vnRingBuffWriteHead);
+  statusLed = new StatusLed();
+  settingsDial = new SettingsDial(ledScreen);
 
   // Turn on Geiger board
   pinMode(GEIGER_PWR, OUTPUT);
@@ -135,13 +135,28 @@ void setup() {
   // Init UV LEDs
   pinMode(UV_LED_PIN, OUTPUT);
 
-  // Init status LED
-  pinMode(STATUS_GREEN, OUTPUT);
-  pinMode(STATUS_RED, OUTPUT);
+  // Burn in RNG
+  quantumRand->burnIn(&trigCount);
+}
 
-  // Buttons and dial
-  pinMode(ROT_PB, INPUT_PULLUP);
+void low_power_mode() {
+  // Put system to sleep
+  detachInterrupt(1);
+  attachInterrupt(digitalPinToInterrupt(SETTINGS_BUTTON), wake_noop, FALLING);
+  sleep_enable();
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  digitalWrite(GEIGER_PWR, LOW);
+  ledScreen->sleep();
+  delay(500);
+  sleep_cpu();
 
+  // Wake it back up
+  sleep_disable();
+  detachInterrupt(digitalPinToInterrupt(SETTINGS_BUTTON));
+  ledScreen->wake();
+  attachInterrupt(1, geigerEvent, FALLING);
+  digitalWrite(GEIGER_PWR, HIGH);
+  trigCount = 0;
   quantumRand->burnIn(&trigCount);
 }
 
@@ -158,26 +173,16 @@ void loop() {
 
   delay(10);
 
+  /*
   float bat_volts = read_bat_volts();
   int int_volts = (int)(1000*bat_volts);
   char* displayVal = LedScreen::number_to_digits(int_volts, 0);
   ledScreen->displayVolts(displayVal);
   delay(2000);
   ledScreen->clear();
+  */
 
-  if(digitalRead(ROT_PB) == LOW) {
-    detachInterrupt(1);
-    attachInterrupt(digitalPinToInterrupt(ROT_PB), wake_noop, FALLING);
-    sleep_enable();
-    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-    digitalWrite(GEIGER_PWR, LOW);
-    ledScreen->sleep();
-    delay(500);
-    sleep_cpu();
-    sleep_disable();
-    detachInterrupt(digitalPinToInterrupt(ROT_PB));
-    ledScreen->wake();
-    attachInterrupt(1, geigerEvent, FALLING);
-    digitalWrite(GEIGER_PWR, HIGH);
+  if(settingsDial->buttonPushed()) {
+    low_power_mode();
   }
 }
