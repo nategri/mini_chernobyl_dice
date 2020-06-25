@@ -8,6 +8,7 @@
 #include "QuantumRNG.h"
 #include "StatusLed.h"
 #include "SettingsDial.h"
+#include "Keyswitch.h"
 
 //
 // Microcontroller pins
@@ -20,6 +21,8 @@
 
 #define USB_V A3
 #define BAT_V A6
+
+#define KEYSWITCH_PIN 4
 
 //
 // Global variables
@@ -39,6 +42,7 @@ Speaker* speaker;
 QuantumRNG* quantumRand;
 StatusLed* statusLed;
 SettingsDial* settingsDial;
+Keyswitch* keyswitch;
 
 //
 // Interrupt functions
@@ -126,7 +130,10 @@ void setup() {
   speaker = new Speaker();
   quantumRand = new QuantumRNG(ledScreen, vnRingBuff, &vnRingBuffWriteHead);
   statusLed = new StatusLed();
+  keyswitch = new Keyswitch();
   settingsDial = new SettingsDial(ledScreen);
+
+  pinMode(KEYSWITCH_PIN, INPUT_PULLUP);
 
   // Turn on Geiger board
   pinMode(GEIGER_PWR, OUTPUT);
@@ -137,6 +144,8 @@ void setup() {
 
   // Burn in RNG
   quantumRand->burnIn(&trigCount);
+
+  statusLed->red();
 }
 
 void low_power_mode() {
@@ -156,6 +165,7 @@ void low_power_mode() {
   ledScreen->wake();
   attachInterrupt(1, geigerEvent, FALLING);
   digitalWrite(GEIGER_PWR, HIGH);
+  statusLed->red();
   trigCount = 0;
   quantumRand->burnIn(&trigCount);
 }
@@ -163,15 +173,42 @@ void low_power_mode() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  uint8_t randB = quantumRand->getByte();
-  
-  char* displayDigits = LedScreen::number_to_digits(randB, 0);
-  delay(2000);
-  ledScreen->display(displayDigits);
-  delay(2000);
-  ledScreen->clear();
+  /*
+  if(keyswitch->pressed()) {
+    uint8_t randB = quantumRand->getByte();
+    
+    char* displayDigits = LedScreen::number_to_digits(randB, 0);
+    delay(2000);
+    ledScreen->display(displayDigits);
+    delay(2000);
+    ledScreen->clear();
+  }
+  */
 
-  delay(10);
+  if(keyswitch->pressed()) {
+    char rolls[] = {-1, -1, -1, -1};
+    for(uint8_t i=0; i<settingsDial->getDiceNum(); i++) {
+      rolls[i] = quantumRand->getDice(settingsDial->getDiceSize()) + 1;
+    }
+    ledScreen->displayRolls(rolls);
+    while(1) {
+      if(keyswitch->pressed()) {
+        delay(100);
+        break;
+      }
+    }
+    ledScreen->clear();
+  }
+
+  /*
+  if(keyswitch->pressed()) {
+    statusLed->red();
+    delay(1000);
+  }
+  else {
+    statusLed->off();
+  }
+  */
 
   /*
   float bat_volts = read_bat_volts();
@@ -181,8 +218,13 @@ void loop() {
   delay(2000);
   ledScreen->clear();
   */
+  if(settingsDial->buttonShortPressed()) {
+    settingsDial->handleInput();
+  }
 
-  if(settingsDial->buttonPushed()) {
+  if(settingsDial->buttonLongPressed()) {
+    statusLed->off();
+    delay(1000);
     low_power_mode();
   }
 }

@@ -26,3 +26,7 @@ void StatusLed::blinkRed() {
   this->msTime = currMsTime;
 }
 
+void StatusLed::off() {
+  digitalWrite(STATUS_GREEN, LOW);
+  digitalWrite(STATUS_RED, LOW);
+}

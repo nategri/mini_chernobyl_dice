@@ -14,6 +14,7 @@ void QuantumRNG::burnIn(volatile unsigned long* trigCount) {
     char* displayDigits = LedScreen::number_to_digits(count, 0);
     this->ledScreen->display(displayDigits);
   }
+  this->ledScreen->clear();
 }
 
 
@@ -72,12 +73,12 @@ uint8_t QuantumRNG::getByte() {
 }
 
 uint8_t QuantumRNG::getDice(uint8_t diceSize) {
+  uint8_t randByte;
   while(1) {
-    uint8_t randByte = this->getByte();
+    randByte = this->getByte();
     if(randByte < (256 - (256 % diceSize))) {
         break;
     }
-
-    return (randByte % diceSize);
   }
+  return (randByte % diceSize);
 }

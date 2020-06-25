@@ -4,26 +4,54 @@ SettingsDial::SettingsDial(LedScreen* ledScreen) {
   this->ledScreen = ledScreen;
   this->rotaryEncoder = new RotaryEncoder(SETTINGS_RT1, SETTINGS_RT2);
   pinMode(SETTINGS_BUTTON, INPUT_PULLUP);
+  this->ms = 0;
+  this->state = 0;
+  this->lastState = 0;
 
   // Default settings
   this->diceNum = 1;
   this->diceSize = 6;
 }
 
-uint8_t SettingsDial::buttonPushed() {
-  if(digitalRead(SETTINGS_BUTTON) == LOW) {
-    return 1;
+uint8_t SettingsDial::buttonPressed(uint16_t pressInterval) {
+  
+  uint8_t returnState = 0;
+  
+  uint8_t reading = !digitalRead(SETTINGS_BUTTON);
+
+  if(reading != this->lastState) {
+    this->ms = millis();
   }
-  else {
-    return 0;
+
+  if((millis() - this->ms) > pressInterval) {
+    if(reading != this->state) {
+      this->state = reading;
+    }
+
+    if(this->state == 1) {
+      returnState = 1;
+    }
   }
+
+  this->lastState = reading;
+
+  return returnState;
+}
+
+uint8_t SettingsDial::buttonShortPressed() {
+  return this->buttonPressed(30);
+}
+
+uint8_t SettingsDial::buttonLongPressed() {
+  return this->buttonPressed(3000);
 }
 
 void SettingsDial::handleInput() {
+  delay(200);
 
   // Set number of dice
   while(1) {
-    if(this->buttonPushed()) {
+    if(this->buttonShortPressed()) {
       delay(100);
       break;
     }
@@ -44,10 +72,11 @@ void SettingsDial::handleInput() {
 
     this->ledScreen->displaySettings(this->diceNum, this->diceSize);
   }
+  delay(200);
 
   // Set size of dice
   while(1) {
-    if(this->buttonPushed()) {
+    if(this->buttonShortPressed()) {
       delay(100);
       break;
     }
@@ -68,6 +97,8 @@ void SettingsDial::handleInput() {
 
     this->ledScreen->displaySettings(this->diceNum, this->diceSize);
   }
+  this->ledScreen->clear();
+  delay(200);
 }
 
 uint8_t SettingsDial::getDiceNum() {

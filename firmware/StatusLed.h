@@ -14,6 +14,7 @@ class StatusLed {
     void green();
     void red();
     void blinkRed();
+    void off();
 };
 
 #endif
