@@ -38,6 +38,9 @@ volatile uint8_t vnRingBuffWriteHead;
 
 uint8_t speakerOn;
 uint8_t trigLedsOn;
+unsigned long int lastVoltageTime;
+float averageVoltage;
+
 LedScreen* ledScreen;
 Speaker* speaker;
 QuantumRNG* quantumRand;
@@ -120,6 +123,7 @@ void setup() {
 
   speakerOn = 0;
   trigLedsOn = 0;
+  lastVoltageTime = millis();
 
   // Enable interrupts
 
@@ -150,6 +154,8 @@ void setup() {
 
   // Burn in RNG
   quantumRand->burnIn(&trigCount);
+
+  averageVoltage = read_bat_volts();
 }
 
 void low_power_mode() {
@@ -188,6 +194,20 @@ void loop() {
     ledScreen->clear();
   }
   */
+
+  // Update average voltage;
+  unsigned long int currMs = millis();
+  if((currMs - lastVoltageTime) > 1000) {
+    lastVoltageTime = currMs;
+    averageVoltage += (read_bat_volts() - averageVoltage) / (30.0 + 1.0);
+  }
+
+  if(averageVoltage < 3.4) {
+    statusLed->blinkRed();
+  }
+  else {
+    statusLed->red();
+  }
 
   if(keyswitch->pressed()) {
     char rolls[] = {-1, -1, -1, -1};
