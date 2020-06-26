@@ -11,8 +11,8 @@ void QuantumRNG::burnIn(volatile unsigned long* trigCount) {
   while((*trigCount - startingTrigCount) < 20) {
     int count = *trigCount - startingTrigCount;
     delay(10);
-    char* displayDigits = LedScreen::number_to_digits(count, 0);
-    this->ledScreen->display(displayDigits);
+    //char* displayDigits = LedScreen::number_to_digits(count, 0);
+    this->ledScreen->animation(count);
   }
   this->ledScreen->clear();
 }

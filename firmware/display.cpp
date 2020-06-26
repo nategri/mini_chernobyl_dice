@@ -43,6 +43,13 @@ void LedScreen::display(char* digit) {
   }
 }
 
+void LedScreen::animation(uint8_t n) {
+  this->clear();
+  for(uint8_t i=0; i<8; i++) {
+    this->ledControl->setLed(0, i, (n%6)+1, true);
+    this->ledControl->setLed(0, i, ((n+1)%6)+1, true);
+  }
+}
 
 void LedScreen::displayVolts(char* digit) {
   LedScreen:display(digit);
