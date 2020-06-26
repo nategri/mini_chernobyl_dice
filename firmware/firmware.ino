@@ -142,10 +142,10 @@ void setup() {
   // Init UV LEDs
   pinMode(UV_LED_PIN, OUTPUT);
 
+  statusLed->red();
+
   // Burn in RNG
   quantumRand->burnIn(&trigCount);
-
-  statusLed->red();
 }
 
 void low_power_mode() {

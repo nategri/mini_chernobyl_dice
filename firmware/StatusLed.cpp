@@ -21,9 +21,10 @@ void StatusLed::blinkRed() {
   digitalWrite(STATUS_GREEN, LOW);
   long unsigned int currMsTime = millis();
   if((currMsTime - this->msTime) > 1000) {
-    digitalWrite(STATUS_RED, !this->redState);
+    this->redState = !this->redState;
+    digitalWrite(STATUS_RED, this->redState);
+    this->msTime = currMsTime;
   }
-  this->msTime = currMsTime;
 }
 
 void StatusLed::off() {

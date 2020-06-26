@@ -70,7 +70,7 @@ void SettingsDial::handleInput() {
       }
     }
 
-    this->ledScreen->displaySettings(this->diceNum, this->diceSize);
+    this->ledScreen->displaySettings(this->diceNum, this->diceSize, 1, 0);
   }
   delay(200);
 
@@ -95,7 +95,7 @@ void SettingsDial::handleInput() {
       }
     }
 
-    this->ledScreen->displaySettings(this->diceNum, this->diceSize);
+    this->ledScreen->displaySettings(this->diceNum, this->diceSize, 0, 1);
   }
   this->ledScreen->clear();
   delay(200);
