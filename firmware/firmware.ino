@@ -37,6 +37,7 @@ volatile uint8_t vnRingBuff[256];
 volatile uint8_t vnRingBuffWriteHead;
 
 uint8_t speakerOn;
+uint8_t trigLedsOn;
 LedScreen* ledScreen;
 Speaker* speaker;
 QuantumRNG* quantumRand;
@@ -49,7 +50,9 @@ Keyswitch* keyswitch;
 //
 
 void geigerEvent() {
-  digitalWrite(UV_LED_PIN, HIGH);
+  if(trigLedsOn) {
+    digitalWrite(UV_LED_PIN, HIGH);
+  }
 
   if(speakerOn) {
     speaker->clickBegin();
@@ -115,7 +118,8 @@ void setup() {
   trigCount = 0;
   vnRingBuff[vnRingBuffWriteHead] = 0;
 
-  speakerOn = SPEAKER_TOGGLE;
+  speakerOn = 0;
+  trigLedsOn = 0;
 
   // Enable interrupts
 
@@ -187,13 +191,17 @@ void loop() {
 
   if(keyswitch->pressed()) {
     char rolls[] = {-1, -1, -1, -1};
+    trigLedsOn = 1;
+    speakerOn = 1;
     for(uint8_t i=0; i<settingsDial->getDiceNum(); i++) {
       rolls[i] = quantumRand->getDice(settingsDial->getDiceSize()) + 1;
     }
+    trigLedsOn = 0;
+    speakerOn = 0;
     ledScreen->displayRolls(rolls);
     while(1) {
       if(keyswitch->pressed()) {
-        delay(100);
+        delay(200);
         break;
       }
     }
