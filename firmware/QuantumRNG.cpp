@@ -48,13 +48,13 @@ uint8_t QuantumRNG::getByte() {
         }
         else if((this->ringBuff[idx] == 1) && (this->ringBuff[idx+1] == 0)) {
           randByte += bitContribution;
-          uint8_t parity = (micros() / 4) % 2;
+          uint8_t parity = (micros() / 8) % 2;
           randByte = randByte ^ (parity << currBit);
           currBit++;
           break;
         }
         else if((this->ringBuff[idx] == 0) && (this->ringBuff[idx+1] == 1)) {
-          uint8_t parity = (micros() / 4) % 2;
+          uint8_t parity = (micros() / 8) % 2;
           randByte = randByte ^ (parity << currBit);
           currBit++;
           break;
