@@ -1,4 +1,5 @@
 // SETTINGS
+#define DEBUG 1
 #define SPEAKER_TOGGLE 0
 
 #include <avr/sleep.h>
@@ -36,6 +37,7 @@ volatile unsigned long trigCount;
 volatile uint8_t vnRingBuff[256];
 volatile uint8_t vnRingBuffWriteHead;
 
+uint8_t debugMode;
 uint8_t speakerOn;
 uint8_t trigLedsOn;
 unsigned long int lastVoltageTime;
@@ -156,6 +158,15 @@ void setup() {
   quantumRand->burnIn(&trigCount);
 
   averageVoltage = read_bat_volts();
+
+  if(DEBUG && usb_power()) {
+    debugMode = 1;
+    trigLedsOn = 1;
+    Serial.begin(19200);
+  }
+  else {
+    debugMode = 0;
+  }
 }
 
 void low_power_mode() {
@@ -209,50 +220,64 @@ void loop() {
     statusLed->red();
   }
 
-  if(keyswitch->pressed()) {
-    char rolls[] = {-1, -1, -1, -1};
-    trigLedsOn = 1;
-    speakerOn = 1;
-    for(uint8_t i=0; i<settingsDial->getDiceNum(); i++) {
-      rolls[i] = quantumRand->getDice(settingsDial->getDiceSize()) + 1;
+  if(debugMode) {
+    // DEBUG STUFF
+    uint8_t randByte = quantumRand->getByte();
+    Serial.write(randByte);
+    if(settingsDial->buttonShortPressed()) {
+      Serial.end();
+      trigLedsOn = 0;
+      debugMode = 0;
+      ledScreen->clear();
+      quantumRand->burnIn(&trigCount);
     }
-    trigLedsOn = 0;
-    speakerOn = 0;
-    ledScreen->displayRolls(rolls);
-    while(1) {
-      if(keyswitch->pressed()) {
-        delay(200);
-        break;
-      }
-    }
-    ledScreen->clear();
-  }
-
-  /*
-  if(keyswitch->pressed()) {
-    statusLed->red();
-    delay(1000);
   }
   else {
-    statusLed->off();
-  }
-  */
+    if(keyswitch->pressed()) {
+      char rolls[] = {-1, -1, -1, -1};
+      trigLedsOn = 1;
+      speakerOn = 1;
+      for(uint8_t i=0; i<settingsDial->getDiceNum(); i++) {
+        rolls[i] = quantumRand->getDice(settingsDial->getDiceSize()) + 1;
+      }
+      trigLedsOn = 0;
+      speakerOn = 0;
+      ledScreen->displayRolls(rolls);
+      while(1) {
+        if(keyswitch->pressed()) {
+          delay(200);
+          break;
+        }
+      }
+      ledScreen->clear();
+    }
 
-  /*
-  float bat_volts = read_bat_volts();
-  int int_volts = (int)(1000*bat_volts);
-  char* displayVal = LedScreen::number_to_digits(int_volts, 0);
-  ledScreen->displayVolts(displayVal);
-  delay(2000);
-  ledScreen->clear();
-  */
-  if(settingsDial->buttonShortPressed()) {
-    settingsDial->handleInput();
-  }
+    /*
+    if(keyswitch->pressed()) {
+      statusLed->red();
+      delay(1000);
+    }
+    else {
+      statusLed->off();
+    }
+    */
 
-  if(settingsDial->buttonLongPressed()) {
-    statusLed->off();
-    delay(1000);
-    low_power_mode();
+    /*
+    float bat_volts = read_bat_volts();
+    int int_volts = (int)(1000*bat_volts);
+    char* displayVal = LedScreen::number_to_digits(int_volts, 0);
+    ledScreen->displayVolts(displayVal);
+    delay(2000);
+    ledScreen->clear();
+    */
+    if(settingsDial->buttonShortPressed()) {
+      settingsDial->handleInput();
+    }
+
+    if(settingsDial->buttonLongPressed()) {
+      statusLed->off();
+      delay(1000);
+      low_power_mode();
+    }
   }
 }
