@@ -3,10 +3,6 @@
 
 #include "LedControl.h"
 
-#define LED_DISP_DATAIN 11
-#define LED_DISP_CLK 13
-#define LED_DISP_LOAD 7
-
 class LedScreen {
   private:
     LedControl* ledControl;

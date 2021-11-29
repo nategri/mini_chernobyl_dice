@@ -1,8 +1,6 @@
 #ifndef KEYSWITCH_H
 #define KEYSWITCH_H
 
-#define KEYSWITCH_PIN 4
-
 class Keyswitch {
   private:
     unsigned long int ms;

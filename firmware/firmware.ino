@@ -1,29 +1,16 @@
 // SETTINGS
-#define DEBUG 1
+#define DEBUG 0
 #define SPEAKER_TOGGLE 0
 
 #include <avr/sleep.h>
 
+#include "pins.h"
 #include "display.h"
 #include "speaker.h"
 #include "QuantumRNG.h"
 #include "StatusLed.h"
 #include "SettingsDial.h"
 #include "Keyswitch.h"
-
-//
-// Microcontroller pins
-//
-
-#define GEIGER_PWR A2
-#define GEIGER_TRG 3
-
-#define UV_LED_PIN 6
-
-#define USB_V A3
-#define BAT_V A6
-
-#define KEYSWITCH_PIN 4
 
 //
 // Global variables

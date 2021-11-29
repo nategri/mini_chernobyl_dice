@@ -3,9 +3,6 @@
 
 #include <Arduino.h>
 
-#define SPEAKER_PIN_A A1
-#define SPEAKER_PIN_B A0
-
 class Speaker {
   public:
     Speaker();

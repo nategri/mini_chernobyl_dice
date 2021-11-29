@@ -1,4 +1,5 @@
 #include "display.h"
+#include "pins.h"
 
 static char* LedScreen::number_to_digits(unsigned long num, const unsigned char zero_pad) {
   static char digits[8];

@@ -4,10 +4,6 @@
 #include "display.h"
 #include "RotaryEncoder.h"
 
-#define SETTINGS_BUTTON 2
-#define SETTINGS_RT1 9
-#define SETTINGS_RT2 10
-
 class SettingsDial {
   private:
     LedScreen* ledScreen;

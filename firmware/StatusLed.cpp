@@ -1,4 +1,5 @@
 #include "StatusLed.h"
+#include "pins.h"
 
 StatusLed::StatusLed() {
   pinMode(STATUS_GREEN, OUTPUT);

@@ -1,4 +1,5 @@
 #include "SettingsDial.h"
+#include "pins.h"
 
 SettingsDial::SettingsDial(LedScreen* ledScreen) {
   this->ledScreen = ledScreen;

@@ -1,4 +1,5 @@
 #include "speaker.h"
+#include "pins.h"
 
 Speaker::Speaker() {
   pinMode(SPEAKER_PIN_A, OUTPUT);

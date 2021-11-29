@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "Keyswitch.h"
+#include "pins.h"
 
 Keyswitch::Keyswitch() {
   pinMode(KEYSWITCH_PIN, INPUT_PULLUP);
