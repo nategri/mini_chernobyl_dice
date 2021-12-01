@@ -1,58 +1,24 @@
-#include "SettingsDial.h"
+#include "Controls.h"
 #include "pins.h"
 
-SettingsDial::SettingsDial(LedScreen* ledScreen) {
+Controls::Controls(LedScreen* ledScreen) {
   this->ledScreen = ledScreen;
   this->rotaryEncoder = new RotaryEncoder(SETTINGS_RT1, SETTINGS_RT2);
-  pinMode(SETTINGS_BUTTON, INPUT_PULLUP);
-  this->ms = 0;
-  this->state = 0;
-  this->lastState = 0;
+
+  this->keyswitchButton = new Button(KEYSWITCH_PIN);
+  this->dialButton = new Button(SETTINGS_BUTTON);
 
   // Default settings
   this->diceNum = 1;
   this->diceSize = 6;
 }
 
-uint8_t SettingsDial::buttonPressed(uint16_t pressInterval) {
-  
-  uint8_t returnState = 0;
-  
-  uint8_t reading = !digitalRead(SETTINGS_BUTTON);
-
-  if(reading != this->lastState) {
-    this->ms = millis();
-  }
-
-  if((millis() - this->ms) > pressInterval) {
-    if(reading != this->state) {
-      this->state = reading;
-    }
-
-    if(this->state == 1) {
-      returnState = 1;
-    }
-  }
-
-  this->lastState = reading;
-
-  return returnState;
-}
-
-uint8_t SettingsDial::buttonShortPressed() {
-  return this->buttonPressed(30);
-}
-
-uint8_t SettingsDial::buttonLongPressed() {
-  return this->buttonPressed(3000);
-}
-
-void SettingsDial::handleInput() {
+void Controls::handleDiceInput() {
   delay(200);
 
   // Set number of dice
   while(1) {
-    if(this->buttonShortPressed()) {
+    if(this->dialButton->shortPressed()) {
       delay(100);
       break;
     }
@@ -77,7 +43,7 @@ void SettingsDial::handleInput() {
 
   // Set size of dice
   while(1) {
-    if(this->buttonShortPressed()) {
+    if(this->dialButton->shortPressed()) {
       delay(100);
       break;
     }
@@ -102,10 +68,10 @@ void SettingsDial::handleInput() {
   delay(200);
 }
 
-uint8_t SettingsDial::getDiceNum() {
+uint8_t Controls::getDiceNum() {
   return this->diceNum;
 }
 
-uint8_t SettingsDial::getDiceSize() {
+uint8_t Controls::getDiceSize() {
   return this->diceSize;
 }

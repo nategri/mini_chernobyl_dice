@@ -9,8 +9,8 @@
 #include "speaker.h"
 #include "QuantumRNG.h"
 #include "StatusLed.h"
-#include "SettingsDial.h"
-#include "Keyswitch.h"
+#include "Controls.h"
+#include "Button.h"
 
 //
 // Global variables
@@ -34,8 +34,7 @@ LedScreen* ledScreen;
 Speaker* speaker;
 QuantumRNG* quantumRand;
 StatusLed* statusLed;
-SettingsDial* settingsDial;
-Keyswitch* keyswitch;
+Controls* controls;
 
 //
 // Interrupt functions
@@ -127,8 +126,7 @@ void setup() {
   speaker = new Speaker();
   quantumRand = new QuantumRNG(ledScreen, vnRingBuff, &vnRingBuffWriteHead);
   statusLed = new StatusLed();
-  keyswitch = new Keyswitch();
-  settingsDial = new SettingsDial(ledScreen);
+  controls = new Controls(ledScreen);
 
   pinMode(KEYSWITCH_PIN, INPUT_PULLUP);
 
@@ -211,7 +209,7 @@ void loop() {
     // DEBUG STUFF
     uint8_t randByte = quantumRand->getByte();
     Serial.write(randByte);
-    if(settingsDial->buttonShortPressed()) {
+    if(controls->dialButton->shortPressed()) {
       Serial.end();
       trigLedsOn = 0;
       debugMode = 0;
@@ -220,18 +218,18 @@ void loop() {
     }
   }
   else {
-    if(keyswitch->pressed()) {
+    if(controls->keyswitchButton->shortPressed()) {
       char rolls[] = {-1, -1, -1, -1};
       trigLedsOn = 1;
       speakerOn = 1;
-      for(uint8_t i=0; i<settingsDial->getDiceNum(); i++) {
-        rolls[i] = quantumRand->getDice(settingsDial->getDiceSize()) + 1;
+      for(uint8_t i=0; i<controls->getDiceNum(); i++) {
+        rolls[i] = quantumRand->getDice(controls->getDiceSize()) + 1;
       }
       trigLedsOn = 0;
       speakerOn = 0;
       ledScreen->displayRolls(rolls);
       while(1) {
-        if(keyswitch->pressed()) {
+        if(controls->keyswitchButton->shortPressed()) {
           delay(200);
           break;
         }
@@ -257,11 +255,11 @@ void loop() {
     delay(2000);
     ledScreen->clear();
     */
-    if(settingsDial->buttonShortPressed()) {
-      settingsDial->handleInput();
+    if(controls->dialButton->shortPressed()) {
+      controls->handleDiceInput();
     }
 
-    if(settingsDial->buttonLongPressed()) {
+    if(controls->dialButton->longPressed()) {
       statusLed->off();
       delay(1000);
       low_power_mode();
